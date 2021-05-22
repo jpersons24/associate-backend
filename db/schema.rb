@@ -10,10 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_20_225335) do
+ActiveRecord::Schema.define(version: 2021_05_22_151538) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "assessments", force: :cascade do |t|
+    t.text "body"
+    t.string "date"
+    t.bigint "plan_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["plan_id"], name: "index_assessments_on_plan_id"
+  end
+
+  create_table "plans", force: :cascade do |t|
+    t.integer "app_target"
+    t.integer "net_target"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_plans_on_user_id"
+  end
+
+  create_table "reflections", force: :cascade do |t|
+    t.text "body"
+    t.string "date"
+    t.bigint "plan_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["plan_id"], name: "index_reflections_on_plan_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -26,4 +53,7 @@ ActiveRecord::Schema.define(version: 2021_05_20_225335) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "assessments", "plans"
+  add_foreign_key "plans", "users"
+  add_foreign_key "reflections", "plans"
 end

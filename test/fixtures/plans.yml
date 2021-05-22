@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  app_target: 1
+  net_target: 1
+  user: one
+
+two:
+  app_target: 1
+  net_target: 1
+  user: two
