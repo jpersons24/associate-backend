@@ -22,6 +22,9 @@ gem 'dotenv-rails'
 # rack-cors gem
 gem 'rack-cors'
 
+# active model serializers
+gem 'active_model_serializers', '~> 0.10.12'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
